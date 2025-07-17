@@ -11,17 +11,20 @@ func FozzyScrape(u string) string {
 	res, err := http.Get(u)
 	if err != nil {
 		log.Println("FozzyScrape:\nGet request error:\n", err)
+		return "Error"
 	}
 
 	defer res.Body.Close()
 
 	if res.StatusCode != 200 {
 		log.Printf("FozzyScrape:\nRequest status: %s", res.Status)
+		return "Error"
 	}
 
 	doc, err := goquery.NewDocumentFromReader(res.Body)
 	if err != nil {
 		log.Println("FozzyScrape:\nres.Body error:\n", err)
+		return "Error"
 	}
 
 	if doc.Find("span.delivery-information").Text() != "Немає в наявності" {

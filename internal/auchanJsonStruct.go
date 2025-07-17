@@ -1,3 +1,5 @@
+// AuchanJson represents the structure of Auchan's GraphQL response.
+
 package internal
 
 type AuchanJson struct {
